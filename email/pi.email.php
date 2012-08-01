@@ -8,6 +8,10 @@ class Plugin_email extends Plugin {
     'author_url' => 'http://ericlbarnes.com'
   );
 
+  /**
+   * Holds the validation errors
+   * @param array
+   */
   protected $validation = array();
 
   /**
@@ -16,6 +20,7 @@ class Plugin_email extends Plugin {
    * Allows you to create an email form and parses the posted data.
    */
   public function form() {
+    // Setup the gazillion options
     $options['to'] = $this->fetch_param('to');
     $options['cc'] = $this->fetch_param('cc', '');
     $options['bcc'] = $this->fetch_param('bcc', '');
@@ -23,28 +28,24 @@ class Plugin_email extends Plugin {
     $options['msg_header'] = $this->fetch_param('msg_header', 'New Message');
     $options['msg_footer'] = $this->fetch_param('msg_footer', '');
     $options['subject'] = $this->fetch_param('subject', 'Email Form');
-
     $required = $this->fetch_param('required');
+
+    // Set up some default vars.
     $output = '';
     $vars = array(array());
 
-    // Handle the posted data
+    // If the page has post data process it.
     if (isset($_POST) and ! empty($_POST)) {
       if ( ! $this->validate($_POST, $required)) {
-        $vars = array(
-          array('error' => true, 'errors' => $this->validation)
-        );
-      } else {
-        if ($this->send($_POST, $options)) {
+        $vars = array(array('error' => true, 'errors' => $this->validation));
+      } elseif ($this->send($_POST, $options)) {
           $vars = array(array('success' => true));
-        } else {
-          $vars = array(array('error' => true,
-            'errors' => array('error' => 'Could not send email'))
-          );
-        }
+      } else {
+          $vars = array(array('error' => true, 'errors' => array('error' => 'Could not send email')));
       }
     }
 
+    // Display the form on the page.
     $output .= '<form method="post">';
     $output .= $this->parse_loop($this->content, $vars);
     $output .= '</form>';
