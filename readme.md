@@ -37,11 +37,11 @@ for more field options:
 
 The `{{ email:form }}` tag accepts the following paramaters:
 
-* subject: The subject of the email.
-* to: The form recipient's email address.
-* cc: A cc email address.
-* bcc: A bcc email address.
-* required: A pipe seperated list of required fields. Example: "name|address|city". Currently this only does simple validation to check if it is an empty value.
+* **subject**: The subject of the email.
+* **to**: The form recipient's email address.
+* **cc**: A cc email address.
+* **bcc**: A bcc email address.
+* **required**: A pipe seperated list of required fields. Example: "name|address|city". Currently this only does simple validation to check if it is an empty value.
 
 ## Issues / Gotchas
 
