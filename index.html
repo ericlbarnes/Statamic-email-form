@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Statamic-email-form by ericbarnes</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Statamic-email-form</h1>
+        <p>Email form plugin for Statamic</p>
+
+        <p class="view"><a href="https://github.com/ericbarnes/Statamic-email-form">View the Project on GitHub <small>ericbarnes/Statamic-email-form</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/ericbarnes/Statamic-email-form/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/ericbarnes/Statamic-email-form/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/ericbarnes/Statamic-email-form">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Statamic Email Form Plugin</h1>
+
+<p>This plugin is designed to allow you to quickly and easily create forms
+that will be used to email reciepents.</p>
+
+<h2>Example Form Template</h2>
+
+<p>Here is a full example to get you going. Please see the parameters section
+for more field options:</p>
+
+<pre><code>{{ email:form subject="Contact Form" to="test@test.com" required="name" }}
+    {{ if error}}
+        &lt;h1&gt;Error&lt;/h1&gt;
+        &lt;ul&gt;
+        {{ errors }}
+            &lt;li&gt;{{error}}&lt;/li&gt;
+        {{ /errors }}
+        &lt;/ul&gt;
+    {{ endif }}
+
+    {{ if success }}
+        &lt;h1&gt;IT WORKED!&lt;/h1&gt;
+    {{ else }}
+        &lt;p&gt;
+            &lt;label for="name"&gt;Name:&lt;/label&gt;
+            &lt;input type="text" name="name" id="name" value="Bill"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="from"&gt;Email:&lt;/label&gt;
+            &lt;input type="text" name="from" id="from" value="test@test.com"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;&lt;input type="submit"&gt;&lt;/p&gt;
+    {{ endif }}
+{{ /email:form }}
+</code></pre>
+
+<h2>Parameters</h2>
+
+<p>The <code>{{ email:form }}</code> tag accepts the following paramaters:</p>
+
+<ul>
+<li>
+<strong>msg_header</strong>: The top body section of the email.</li>
+<li>
+<strong>msg_footer</strong>: The bottom body section of the email.</li>
+<li>
+<strong>subject</strong>: The subject of the email.</li>
+<li>
+<strong>to</strong>: The form recipient's email address.</li>
+<li>
+<strong>cc</strong>: A cc email address.</li>
+<li>
+<strong>bcc</strong>: A bcc email address.</li>
+<li>
+<strong>required</strong>: A pipe seperated list of required fields. Example: "name|address|city". Currently this only does simple validation to check if it is an empty value.</li>
+</ul><h2>Issues / Gotchas - On the radar</h2>
+
+<ol>
+<li>The name field is hard coded as the reply name in the plugin so it is recommended you use this field in your form.</li>
+<li>The plugin does have some hard coded English text and that will be fixed up in a future release. Still deciding on the best option for this.</li>
+<li>Validation is currently lacking some useful features. Basically only simple checking if the field is empty.</li>
+</ol><h2>Contribute</h2>
+
+<p>If you see any issues or have ideas for improvements pull requests are gladly
+accepted. ;-)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/ericbarnes">ericbarnes</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
