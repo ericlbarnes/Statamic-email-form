@@ -20,6 +20,8 @@ class Plugin_email extends Plugin {
     $options['cc'] = $this->fetch_param('cc', '');
     $options['bcc'] = $this->fetch_param('bcc', '');
     $options['from'] = $this->fetch_param('from', '');
+    $options['msg_header'] = $this->fetch_param('msg_header', 'New Message');
+    $options['msg_footer'] = $this->fetch_param('msg_footer', '');
     $options['subject'] = $this->fetch_param('subject', 'Email Form');
 
     $required = $this->fetch_param('required');
@@ -71,7 +73,7 @@ class Plugin_email extends Plugin {
       }
     }
 
-    return empty($this->validation) ? true : false
+    return empty($this->validation) ? true : false;
   }
 
   /**
@@ -88,10 +90,13 @@ class Plugin_email extends Plugin {
     $name = isset($input['name']) ? $input['name'] : 'Email Form';
 
     // message
-    $message = "New Email\r\n";
+    $message = $options['msg_header']."\r\n";
+    $message .= "-------------\r\n";
     foreach ($input as $key => $value) {
       $message .= $key.": ".$value."\r\n";
     }
+    $message .= "-------------\r\n";
+    $message .= $options['msg_footer']."\r\n";
 
     // Additional headers
     $headers   = array();

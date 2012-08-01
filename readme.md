@@ -37,6 +37,8 @@ for more field options:
 
 The `{{ email:form }}` tag accepts the following paramaters:
 
+* **msg_header**: The top body section of the email.
+* **msg_footer**: The bottom body section of the email.
 * **subject**: The subject of the email.
 * **to**: The form recipient's email address.
 * **cc**: A cc email address.
