@@ -8,7 +8,7 @@ that will be used to email reciepents.
 Here is a full example to get you going. Please see the parameters section
 for more field options:
 
-	{{ email:form subject="Contact Form" to="eric@ericlbarnes.com" required="name" }}
+	{{ email:form subject="Contact Form" to="test@test.com" required="name" }}
 		{{ if error}}
 			<h1>Error</h1>
 			<ul>
