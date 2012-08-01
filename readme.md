@@ -1,11 +1,11 @@
-# Statamic Email Plugin
+# Statamic Email Form Plugin
 
 This plugin is designed to allow you to quickly and easily create forms
 that will be used to email reciepents.
 
 ## Example Form Template
 
-Here is a full example to get you going. Please see the paramaters section
+Here is a full example to get you going. Please see the parameters section
 for more field options:
 
 	{{ email:form subject="Contact Form" to="eric@ericlbarnes.com" required="name" }}
@@ -33,7 +33,7 @@ for more field options:
 		{{ endif }}
 	{{ /email:form }}
 
-## Paramaters
+## Parameters
 
 The `{{ email:form }}` tag accepts the following paramaters:
 
