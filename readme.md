@@ -45,9 +45,11 @@ The `{{ email:form }}` tag accepts the following paramaters:
 * **bcc**: A bcc email address.
 * **required**: A pipe seperated list of required fields. Example: "name|address|city". Currently this only does simple validation to check if it is an empty value.
 
-## Issues / Gotchas
+## Issues / Gotchas - On the radar
 
-The name field is hard coded as the reply name in the plugin so it is recommended you use this field in your form.
+1. The name field is hard coded as the reply name in the plugin so it is recommended you use this field in your form.
+2. The plugin does have some hard coded English text and that will be fixed up in a future release. Still deciding on the best option for this.
+3. Validation is currently lacking some useful features. Basically only simple checking if the field is empty.
 
 ## Contribute
 
