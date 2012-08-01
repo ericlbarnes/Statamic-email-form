@@ -61,7 +61,7 @@ class Plugin_email extends Plugin {
     $required = explode('|', str_replace('from', '', $required));
 
     // From is always required
-    if ( ! isset($input['from']) or $input['from'] == '') {
+    if ( ! isset($input['from']) or ! filter_var($input['from'], FILTER_VALIDATE_EMAIL)) {
       $this->validation[0]['error'] = 'From is required';
     }
 
@@ -71,10 +71,7 @@ class Plugin_email extends Plugin {
       }
     }
 
-    if ( ! empty($this->validation)) {
-      return false;
-    }
-    return true;
+    return empty($this->validation) ? true : false
   }
 
   /**
