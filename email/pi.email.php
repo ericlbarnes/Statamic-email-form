@@ -41,7 +41,7 @@ class Plugin_email extends Plugin {
       } elseif ($this->send($_POST, $options)) {
           $vars = array(array('success' => true));
       } else {
-          $vars = array(array('error' => true, 'errors' => array('error' => 'Could not send email')));
+          $vars = array(array('error' => true, 'errors' => 'Could not send email'));
       }
     }
 
