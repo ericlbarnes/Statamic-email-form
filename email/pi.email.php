@@ -29,6 +29,15 @@ class Plugin_email extends Plugin {
     $options['msg_footer'] = $this->fetch_param('msg_footer', '');
     $options['subject'] = $this->fetch_param('subject', 'Email Form');
     $required = $this->fetch_param('required');
+    $honeypot = $this->fetch_param('honeypot');
+
+    //make sure honeypot is true/false
+    if($honeypot != '') {
+      $honeypot = (bool) $this->fetch_param('honeypot');
+    }
+    else {
+      $honeypot = false;
+    }
 
     // Set up some default vars.
     $output = '';
@@ -48,7 +57,18 @@ class Plugin_email extends Plugin {
     // Display the form on the page.
     $output .= '<form method="post">';
     $output .= $this->parse_loop($this->content, $vars);
+
+    //inject the honeypot if true
+    if($honeypot) {
+      $output .= '<input type="text" name="username" class="hnypot" value="test" />';
+    }
+
     $output .= '</form>';
+
+    //inject the honeypot css if true
+    if($honeypot) {
+      $output .= '<style type="text/css">.hnypot { display: none; }</style>';
+    }
 
     return $output;
   }
@@ -66,6 +86,11 @@ class Plugin_email extends Plugin {
     // From is always required
     if ( ! isset($input['from']) or ! filter_var($input['from'], FILTER_VALIDATE_EMAIL)) {
       $this->validation[0]['error'] = 'From is required';
+    }
+
+    // Username is never required
+    if ( ! isset($input['username']) ) {
+      $this->validation[]['error'] = 'Username is never required';
     }
 
     foreach ($required as $key => $value) {
