@@ -5,10 +5,9 @@ that will be used to email reciepents.
 
 ## Example Form Template
 
-Here is a full example to get you going. Please see the parameters section
-for more field options:
+Here is a full example to get you going. Please see the parameters section for more field options:
 
-	{{ email:form subject="Contact Form" to="test@test.com" required="name" }}
+	{{ email_form subject="Contact Form" to="handsome@example.com" required="name" }}
 		{{ if error}}
 			<h1>Error</h1>
 			<ul>
@@ -19,23 +18,23 @@ for more field options:
 		{{ endif }}
 
 		{{ if success }}
-			<h1>IT WORKED!</h1>
+			<p>Your message has been sent!</p>
 		{{ else }}
-			<p>
+			<div>
 				<label for="name">Name:</label>
 				<input type="text" name="name" id="name" value="Bill">
-			</p>
-			<p>
+			</div>
+			<div>
 				<label for="from">Email:</label>
 				<input type="text" name="from" id="from" value="test@test.com">
-			</p>
-			<p><input type="submit"></p>
+			</div>
+			<div><input type="submit"></div>
 		{{ endif }}
-	{{ /email:form }}
+	{{ /email_form }}
 
 ## Parameters
 
-The `{{ email:form }}` tag accepts the following paramaters:
+The `{{ email_form }}` tag accepts the following paramaters:
 
 * **msg_header**: The top body section of the email.
 * **msg_footer**: The bottom body section of the email.
@@ -51,7 +50,6 @@ The `{{ email:form }}` tag accepts the following paramaters:
 2. The plugin does have some hard coded English text and that will be fixed up in a future release. Still deciding on the best option for this.
 3. Validation is currently lacking some useful features. Basically only simple checking if the field is empty.
 
-## Contribute
+## Contributions
 
-If you see any issues or have ideas for improvements pull requests are gladly
-accepted. ;-)
+If you see any issues or have ideas for improvements pull requests are gladly accepted. ;-)

@@ -19,7 +19,7 @@ class Plugin_email_form extends Plugin {
    *
    * Allows you to create an email form and parses the posted data.
    */
-  public function form() {
+  public function idex() {
     // Setup the gazillion options
     $options['to'] = $this->fetch_param('to');
     $options['cc'] = $this->fetch_param('cc', '');
