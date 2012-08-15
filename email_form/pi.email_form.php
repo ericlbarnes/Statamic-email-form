@@ -38,6 +38,7 @@ class Plugin_email extends Plugin {
     else {
       $honeypot = false;
     }
+    $honeypot = $this->fetch_param('honeypot', false, false, true); #boolen param
 
     // Set up some default vars.
     $output = '';
