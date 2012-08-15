@@ -1,9 +1,9 @@
 <?php
-class Plugin_email extends Plugin {
+class Plugin_email_form extends Plugin {
 
   public $meta = array(
     'name'       => 'Email',
-    'version'    => '1',
+    'version'    => '1.0',
     'author'     => 'Eric Barnes',
     'author_url' => 'http://ericlbarnes.com'
   );
