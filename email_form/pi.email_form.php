@@ -28,16 +28,8 @@ class Plugin_email_form extends Plugin {
     $options['msg_header'] = $this->fetch_param('msg_header', 'New Message');
     $options['msg_footer'] = $this->fetch_param('msg_footer', '');
     $options['subject'] = $this->fetch_param('subject', 'Email Form');
+    
     $required = $this->fetch_param('required');
-    $honeypot = $this->fetch_param('honeypot');
-
-    //make sure honeypot is true/false
-    if($honeypot != '') {
-      $honeypot = (bool) $this->fetch_param('honeypot');
-    }
-    else {
-      $honeypot = false;
-    }
     $honeypot = $this->fetch_param('honeypot', false, false, true); #boolen param
 
     // Set up some default vars.
@@ -60,16 +52,11 @@ class Plugin_email_form extends Plugin {
     $output .= $this->parse_loop($this->content, $vars);
 
     //inject the honeypot if true
-    if($honeypot) {
-      $output .= '<input type="text" name="username" class="hnypot" value="test" />';
+    if ($honeypot) {
+      $output .= '<input type="text" name="username" value="" style="display:none" />';
     }
 
     $output .= '</form>';
-
-    //inject the honeypot css if true
-    if($honeypot) {
-      $output .= '<style type="text/css">.hnypot { display: none; }</style>';
-    }
 
     return $output;
   }
@@ -90,7 +77,7 @@ class Plugin_email_form extends Plugin {
     }
 
     // Username is never required
-    if ( ! isset($input['username']) ) {
+    if (isset($input['username']) && $input['username'] !== '' ) {
       $this->validation[]['error'] = 'Username is never required';
     }
 
@@ -112,9 +99,9 @@ class Plugin_email_form extends Plugin {
    */
   protected function send($input, $options) {
 
-    $to = $options['to'];
+    $to      = $options['to'];
     $subject = $options['subject'];
-    $name = isset($input['name']) ? $input['name'] : 'Email Form';
+    $name    = isset($input['name']) ? $input['name'] : 'Email Form';
 
     // message
     $message = $options['msg_header']."\r\n";
@@ -131,10 +118,10 @@ class Plugin_email_form extends Plugin {
     $headers[] = "Content-type: text/plain; charset=iso-8859-1";
     $headers[] = "From: ".$name." <".$input['from'].">";
     $headers[] = "Reply-To: ".$name." <".$input['from'].">";
-    if ($options['cc'] != '') {
+    if ($options['cc'] !== '') {
       $headers[] = "Cc: ".$options['cc'];
     }
-    if ($options['bcc'] != '') {
+    if ($options['bcc'] !== '') {
       $headers[] = "Bcc: ".$options['bcc'];
     }
     $headers[] = "Subject: ".$options['subject'];
