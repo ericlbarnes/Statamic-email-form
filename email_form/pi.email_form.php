@@ -28,6 +28,8 @@ class Plugin_email_form extends Plugin {
     $options['msg_header'] = $this->fetch_param('msg_header', 'New Message');
     $options['msg_footer'] = $this->fetch_param('msg_footer', '');
     $options['subject'] = $this->fetch_param('subject', 'Email Form');
+    $options['class'] = $this->fetch_param('class', '');
+    $options['id'] = $this->fetch_param('id', '');
     
     $required = $this->fetch_param('required');
     $honeypot = $this->fetch_param('honeypot', false, false, true); #boolen param
@@ -48,7 +50,18 @@ class Plugin_email_form extends Plugin {
     }
 
     // Display the form on the page.
-    $output .= '<form method="post">';
+    $output .= '<form method="post"';
+    
+    if( $options['class'] != '') {
+      $output .= ' class="' . $options['class'] . '"';
+    }
+
+    if( $options['id'] != '') {
+      $output .= ' id="' . $options['id'] . '"';
+    }
+
+    $output .= '>';
+    
     $output .= $this->parse_loop($this->content, $vars);
 
     //inject the honeypot if true
