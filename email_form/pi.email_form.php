@@ -25,9 +25,9 @@ class Plugin_email_form extends Plugin {
     $options['cc'] = $this->fetch_param('cc', '');
     $options['bcc'] = $this->fetch_param('bcc', '');
     $options['from'] = $this->fetch_param('from', '');
-    $options['msg_header'] = $this->fetch_param('msg_header', 'New Message');
+    $options['msg_header'] = $this->fetch_param('msg_header', 'New Message', false, false, false);
     $options['msg_footer'] = $this->fetch_param('msg_footer', '');
-    $options['subject'] = $this->fetch_param('subject', 'Email Form');
+    $options['subject'] = $this->fetch_param('subject', 'Email Form', false, false, false);
     $options['class'] = $this->fetch_param('class', '');
     $options['id'] = $this->fetch_param('id', '');
     
