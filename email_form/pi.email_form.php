@@ -21,18 +21,18 @@ class Plugin_email_form extends Plugin {
    */
   public function index() {
     // Setup the gazillion options
-    $options['to'] = $this->fetch_param('to');
-    $options['cc'] = $this->fetch_param('cc', '');
-    $options['bcc'] = $this->fetch_param('bcc', '');
-    $options['from'] = $this->fetch_param('from', '');
-    $options['msg_header'] = $this->fetch_param('msg_header', 'New Message', false, false, false);
-    $options['msg_footer'] = $this->fetch_param('msg_footer', '', false, false, false);
-    $options['subject'] = $this->fetch_param('subject', 'Email Form', false, false, false);
-    $options['class'] = $this->fetch_param('class', '');
-    $options['id'] = $this->fetch_param('id', '');
+    $options['to'] = $this->fetchParam('to');
+    $options['cc'] = $this->fetchParam('cc', '');
+    $options['bcc'] = $this->fetchParam('bcc', '');
+    $options['from'] = $this->fetchParam('from', '');
+    $options['msg_header'] = $this->fetchParam('msg_header', 'New Message', false, false, false);
+    $options['msg_footer'] = $this->fetchParam('msg_footer', '', false, false, false);
+    $options['subject'] = $this->fetchParam('subject', 'Email Form', false, false, false);
+    $options['class'] = $this->fetchParam('class', '');
+    $options['id'] = $this->fetchParam('id', '');
     
-    $required = $this->fetch_param('required');
-    $honeypot = $this->fetch_param('honeypot', false, false, true); #boolen param
+    $required = $this->fetchParam('required');
+    $honeypot = $this->fetchParam('honeypot', false, false, true); #boolen param
 
     // Set up some default vars.
     $output = '';
@@ -62,7 +62,7 @@ class Plugin_email_form extends Plugin {
 
     $output .= '>';
     
-    $output .= $this->parse_loop($this->content, $vars);
+    $output .= Parse::tagLoop($this->content, $vars);
 
     //inject the honeypot if true
     if ($honeypot) {
