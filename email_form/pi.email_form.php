@@ -30,7 +30,7 @@ class Plugin_email_form extends Plugin {
     $options['subject'] = $this->fetchParam('subject', 'Email Form', false, false, false);
     $options['class'] = $this->fetchParam('class', '');
     $options['id'] = $this->fetchParam('id', '');
-    
+
     $required = $this->fetchParam('required');
     $honeypot = $this->fetchParam('honeypot', false, false, true); #boolen param
 
@@ -51,7 +51,7 @@ class Plugin_email_form extends Plugin {
 
     // Display the form on the page.
     $output .= '<form method="post"';
-    
+
     if( $options['class'] != '') {
       $output .= ' class="' . $options['class'] . '"';
     }
@@ -61,7 +61,7 @@ class Plugin_email_form extends Plugin {
     }
 
     $output .= '>';
-    
+
     $output .= Parse::tagLoop($this->content, $vars);
 
     //inject the honeypot if true
@@ -119,9 +119,7 @@ class Plugin_email_form extends Plugin {
     // message
     $message = $options['msg_header']."\r\n";
     $message .= "-------------\r\n";
-    foreach ($input as $key => $value) {
-      $message .= $key.": ".$value."\r\n";
-    }
+    $message .= $this->parse_input($input);
     $message .= "-------------\r\n";
     $message .= $options['msg_footer']."\r\n";
 
@@ -142,5 +140,20 @@ class Plugin_email_form extends Plugin {
 
     // Mail it
     return mail($options['to'], $options['subject'], $message, implode("\r\n", $headers));
+  }
+
+  /**
+   * Recursively Parse the input
+   */
+  protected function parse_input($input = array()) {
+    $out = '';
+    foreach ($input as $key => $value) {
+      if (is_array($key)) {
+        $out .= $this->parse_input($value)."\r\n";
+        break;
+      }
+      $out .= $key.": ".$value."\r\n";
+    }
+    return $out;
   }
 }
