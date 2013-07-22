@@ -30,6 +30,7 @@ class Plugin_email_form extends Plugin {
     $options['subject'] = $this->fetchParam('subject', 'Email Form', false, false, false);
     $options['class'] = $this->fetchParam('class', '');
     $options['id'] = $this->fetchParam('id', '');
+    $options['data'] = $this->fetchParam('data', '');
     
     $required = $this->fetchParam('required');
     $honeypot = $this->fetchParam('honeypot', false, false, true); #boolen param
@@ -58,6 +59,10 @@ class Plugin_email_form extends Plugin {
 
     if( $options['id'] != '') {
       $output .= ' id="' . $options['id'] . '"';
+    }
+    
+    if( $options['data'] != '') {
+      $output .= ' data="' . $options['data'] . '"';
     }
 
     $output .= '>';
