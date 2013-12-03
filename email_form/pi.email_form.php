@@ -134,7 +134,11 @@ class Plugin_email_form extends Plugin {
     $headers   = array();
     $headers[] = "MIME-Version: 1.0";
     $headers[] = "Content-type: text/plain; charset=iso-8859-1";
-    $headers[] = "From: ".$name." <".$input['from'].">";
+    if ($options['from'] !== '') {
+    	$headers[] = "From: ".$name." <".$options['from'].">";
+	} else {
+	   	$headers[] = "From: ".$name." <".$input['from'].">";
+	}
     $headers[] = "Reply-To: ".$name." <".$input['from'].">";
     if ($options['cc'] !== '') {
       $headers[] = "Cc: ".$options['cc'];
