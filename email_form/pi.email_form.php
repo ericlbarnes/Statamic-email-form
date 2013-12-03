@@ -31,7 +31,7 @@ class Plugin_email_form extends Plugin {
     $options['class'] = $this->fetchParam('class', '');
     $options['id'] = $this->fetchParam('id', '');
     $options['data'] = $this->fetchParam('data', '');
-    
+
     $required = $this->fetchParam('required');
     $honeypot = $this->fetchParam('honeypot', false, false, true); #boolen param
 
@@ -52,7 +52,7 @@ class Plugin_email_form extends Plugin {
 
     // Display the form on the page.
     $output .= '<form method="post"';
-    
+
     if( $options['class'] != '') {
       $output .= ' class="' . $options['class'] . '"';
     }
@@ -60,13 +60,13 @@ class Plugin_email_form extends Plugin {
     if( $options['id'] != '') {
       $output .= ' id="' . $options['id'] . '"';
     }
-    
+
     if( $options['data'] != '') {
       $output .= ' data="' . $options['data'] . '"';
     }
 
     $output .= '>';
-    
+
     $output .= Parse::tagLoop($this->content, $vars);
 
     //inject the honeypot if true
