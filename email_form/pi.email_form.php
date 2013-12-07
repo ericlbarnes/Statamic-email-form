@@ -136,6 +136,7 @@ class Plugin_email_form extends Plugin {
     $headers[] = "Content-type: text/plain; charset=iso-8859-1";
     if ($options['from'] !== '') {
     	$headers[] = "From: ".$name." <".$options['from'].">";
+    	$headers[] = "Return-Path: ".$name." <".$options['from'].">";
 	} else {
 	   	$headers[] = "From: ".$name." <".$input['from'].">";
 	}
@@ -150,6 +151,6 @@ class Plugin_email_form extends Plugin {
     $headers[] = "X-Mailer: PHP/".phpversion();
 
     // Mail it
-    return mail($options['to'], $options['subject'], $message, implode("\r\n", $headers));
+    return mail($options['to'], $options['subject'], $message, implode("\r\n", $headers),"-r".($options['from'] ? $options['from'] : $input['from'] ));
   }
 }
