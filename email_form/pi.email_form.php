@@ -31,7 +31,7 @@ class Plugin_email_form extends Plugin {
     $options['class'] = $this->fetchParam('class', '');
     $options['id'] = $this->fetchParam('id', '');
     $options['data'] = $this->fetchParam('data', '');
-    
+
     $required = $this->fetchParam('required');
     $honeypot = $this->fetchParam('honeypot', false, false, true); #boolen param
 
@@ -52,7 +52,7 @@ class Plugin_email_form extends Plugin {
 
     // Display the form on the page.
     $output .= '<form method="post"';
-    
+
     if( $options['class'] != '') {
       $output .= ' class="' . $options['class'] . '"';
     }
@@ -60,13 +60,13 @@ class Plugin_email_form extends Plugin {
     if( $options['id'] != '') {
       $output .= ' id="' . $options['id'] . '"';
     }
-    
+
     if( $options['data'] != '') {
       $output .= ' data="' . $options['data'] . '"';
     }
 
     $output .= '>';
-    
+
     $output .= Parse::tagLoop($this->content, $vars);
 
     //inject the honeypot if true
@@ -134,7 +134,12 @@ class Plugin_email_form extends Plugin {
     $headers   = array();
     $headers[] = "MIME-Version: 1.0";
     $headers[] = "Content-type: text/plain; charset=iso-8859-1";
-    $headers[] = "From: ".$name." <".$input['from'].">";
+    if ($options['from'] !== '') {
+    	$headers[] = "From: ".$name." <".$options['from'].">";
+    	$headers[] = "Return-Path: ".$name." <".$options['from'].">";
+	} else {
+	   	$headers[] = "From: ".$name." <".$input['from'].">";
+	}
     $headers[] = "Reply-To: ".$name." <".$input['from'].">";
     if ($options['cc'] !== '') {
       $headers[] = "Cc: ".$options['cc'];
@@ -146,6 +151,6 @@ class Plugin_email_form extends Plugin {
     $headers[] = "X-Mailer: PHP/".phpversion();
 
     // Mail it
-    return mail($options['to'], $options['subject'], $message, implode("\r\n", $headers));
+    return mail($options['to'], $options['subject'], $message, implode("\r\n", $headers),"-r".($options['from'] ? $options['from'] : $input['from'] ));
   }
 }

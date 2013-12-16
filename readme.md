@@ -40,6 +40,7 @@ The `{{ email_form }}` tag accepts the following paramaters:
 * **msg_footer**: The bottom body section of the email.
 * **subject**: The subject of the email.
 * **to**: The form recipient's email address.
+* **from**: A email address to be used by the form. The `Reply-to` is always the supplied from `from` field.
 * **cc**: A cc email address.
 * **bcc**: A bcc email address.
 * **required**: A pipe separated list of required fields. Example: "name|address|city". Currently this only does simple validation to check if it is an empty value.
