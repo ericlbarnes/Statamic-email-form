@@ -125,6 +125,15 @@ class Plugin_email_form extends Plugin {
     $message = $options['msg_header']."\r\n";
     $message .= "-------------\r\n";
     foreach ($input as $key => $value) {
+        // Checking to see if the value happes to be an array.
+        // For example, on a Multiselect you need to pass
+        // the post as an array to get all the selected options.
+        // If it is an array, it will squish it down to a comma-
+        // separated list
+        if( is_array($value) )
+        {
+            $value = implode(', ', $value);
+        }
       $message .= $key.": ".$value."\r\n";
     }
     $message .= "-------------\r\n";
