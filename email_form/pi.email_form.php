@@ -3,7 +3,7 @@ class Plugin_email_form extends Plugin {
 
   public $meta = array(
     'name'       => 'Email',
-    'version'    => '1.0',
+    'version'    => '1.0.38',
     'author'     => 'Eric Barnes',
     'author_url' => 'http://ericlbarnes.com'
   );
@@ -134,7 +134,7 @@ class Plugin_email_form extends Plugin {
         {
             $value = implode(', ', $value);
         }
-      $message .= $key.": ".$value."\r\n";
+      $message .= ucfirst($key).": ".$value."\r\n";
     }
     $message .= "-------------\r\n";
     $message .= $options['msg_footer']."\r\n";
@@ -160,6 +160,6 @@ class Plugin_email_form extends Plugin {
     $headers[] = "X-Mailer: PHP/".phpversion();
 
     // Mail it
-    return mail($options['to'], $options['subject'], $message, implode("\r\n", $headers),"-r".($options['from'] ? $options['from'] : $input['from'] ));
+    return mail($options['to'], $options['subject'], $message, implode("\r\n", $headers));
   }
 }
