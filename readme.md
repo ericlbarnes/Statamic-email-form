@@ -49,9 +49,10 @@ The `{{ email_form }}` tag accepts the following paramaters:
 
 ## Issues / Gotchas - On the radar
 
-1. The name field is hard coded as the reply name in the plugin so it is recommended you use this field in your form.
-2. The plugin does have some hard coded English text and that will be fixed up in a future release. Still deciding on the best option for this.
-3. Validation is currently lacking some useful features. Basically only simple checking if the field is empty.
+1. With html_caching enabled the success and error messages will not display. See this  [issue report](https://github.com/ericbarnes/Statamic-email-form/issues/25)
+2. The name field is hard coded as the reply name in the plugin so it is recommended you use this field in your form.
+3. The plugin does have some hard coded English text and that will be fixed up in a future release. Still deciding on the best option for this.
+4. Validation is currently lacking some useful features. Basically only simple checking if the field is empty.
 
 ## Contributions
 
