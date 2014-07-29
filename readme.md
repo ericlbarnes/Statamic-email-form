@@ -1,7 +1,7 @@
 # Statamic Email Form Plugin
 
 This plugin is designed to allow you to quickly and easily create forms
-that will be used to email reciepents.
+that will be used to email reciepents. This is a very simple plugin and if you need more power checkout the official  [Raven](http://www.statamic.com/add-ons/raven) plugin.
 
 ## Example Form Template
 
